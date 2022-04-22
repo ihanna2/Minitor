@@ -2,6 +2,7 @@ from cryptography.fernet import Fernet
 import encryptor2
 import decryptor2
 import keyGen
+import getpass
 """
 Choose if they want to encrypt or decrypt their file. Or read without 
 decrypting it
@@ -55,7 +56,13 @@ else:
     else:
         print("Did not enter an accepted answer. Restart required.")
         exit()
-        
+
+
+#Password Implementation
+answer=int(input("Would you like to use a password with your key?\n1:Yes\n2:No\n"))
+if answer == 1:
+    key=keyGen.passwordKey(key)
+          
 #encryption
 if (mode==1):
     print("encryption mode activated")

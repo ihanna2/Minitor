@@ -1,6 +1,7 @@
 from cryptography.fernet import Fernet 
 from pathlib import Path
 import os 
+import getpass
 
 def fileExists(fileName):    
     path_to_file = fileName
@@ -22,6 +23,18 @@ def writeKey():
     return key
 #if no key, create it.
 
+
+#password key
+def passwordKey(key):
+    password=getpass.getpass(prompt='Enter desired password',stream = None)
+    lengthOfP = len(password)
+    lengthOfK = len(key)
+    index = lengthOfK-lengthOfP
+    key=key.decode()
+    key2=key[:index-1]+password+"="
+    key2=key2.encode()
+    return key2
+    
 #main
 if __name__=="__main__":    
     #check if key file exists first
